@@ -1,0 +1,11 @@
+site_name: Crear una aplicación FullStack con MySQL, SpringBoot y ReactJS
+nav:
+  - Inicio: index.md
+  - Introducción: intro.md
+  - Base de datos: basedatos.md
+  - Backend API - Parte1: backendp1.md
+  - Backend API - Parte2: backendp2.md
+  - Backend API - Parte3: backendp3.md
+  - Backend API - Parte4: backendp4.md
+theme:
+  name: readthedocs

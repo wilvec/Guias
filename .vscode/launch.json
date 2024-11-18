@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-RentacarApplication<rentacar>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.example.rentacar.RentacarApplication",
+      "projectName": "rentacar",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
