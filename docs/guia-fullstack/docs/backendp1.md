@@ -47,8 +47,8 @@ Esta herramienta es bastante intuitiva y genera un arquetipo de una aplicación 
 ### Estructura de un proyecto en Spring Boot
 
 Una estructura común de un proyecto en Spring Boot es la siguiente:
-
-`my-spring-boot-project/
+<pre>
+my-spring-boot-project/
 │
 ├── src/
 │   ├── main/
@@ -81,7 +81,7 @@ Una estructura común de un proyecto en Spring Boot es la siguiente:
 ├── mvnw
 ├── mvnw.cmd
 ├── pom.xml
-└── README.md`
+└── README.md
 
 #### Descripción de la Estructura
 

@@ -28,5 +28,4 @@ public class ApplicationConfig {
         auth.userDetailsService(detalleUsuarioServicio).passwordEncoder(bCryptPasswordEncoder);
         return auth.build();
     }
-
 }

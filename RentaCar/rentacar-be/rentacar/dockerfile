@@ -1,0 +1,14 @@
+# Usa una imagen base con Java
+FROM eclipse-temurin:23-jdk-alpine
+
+# Crea un directorio para la aplicación
+WORKDIR /app
+
+# Copia el archivo JAR generado por Gradle al contenedor
+COPY build/libs/rentacar-1.0.jar app.jar
+
+# Expone el puerto en el que tu aplicación se ejecutará
+EXPOSE 8085
+
+# Comando para ejecutar la aplicación
+ENTRYPOINT ["java", "-jar", "app.jar"]

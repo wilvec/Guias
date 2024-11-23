@@ -44,7 +44,6 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
                 .usuario(usuario.getUsuario())
                 .password(usuario.getPassword())
                 .build();
-
     }
 
     @Override
@@ -56,5 +55,4 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
                 .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado"));
         return servicioJwt.generarToken(usuario);
     }
-
 }

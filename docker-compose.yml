@@ -4,6 +4,8 @@ services:
     container_name: mysql
     ports:
       - 3307:3306
+    networks:
+     - redfullstack
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=rentacardb
@@ -20,5 +22,20 @@ services:
     container_name: phpmyadmin
     ports:
       - 8180:80
+    networks:
+     - redfullstack
+  rentacar_be:
+    image: rentacar-be
+    container_name: rentacar_be
+    restart: always
+    ports:
+      - 8085:8085
+    networks:
+     - redfullstack
+    depends_on:
+      - mysql
+networks:
+  redfullstack:
+    driver: bridge
 volumes:
   mysql_data:

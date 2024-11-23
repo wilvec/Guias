@@ -23,8 +23,6 @@ public class JwtServicio {
     @Value("${jwt.secret}")
     private String secreto;
 
-    @Value("${renovar-token-default}")
-    private boolean renuevaTokenDefault;
 
     public String extraerUsuario(String jwtToken) {
         final Claims claims = extraerTodosClaims(jwtToken);
@@ -54,14 +52,6 @@ public class JwtServicio {
         return claims.get(EXPIRACION_CLAIM, Date.class);
     }
 
-    // TODO: Implementar renovación de token
-    public String renovarToken(String jwtToken, Usuario usuario) {
-        if (esTokenExpirado(jwtToken)) {
-            return generarToken(usuario);
-        }
-        return jwtToken;
-    }
-
     public String generarToken(Usuario usuario) {
         return crearToken(usuario);
     }
@@ -73,5 +63,4 @@ public class JwtServicio {
                 .signWith(obtenerClaveDeFirma())
                 .compact();
     }
-
 }

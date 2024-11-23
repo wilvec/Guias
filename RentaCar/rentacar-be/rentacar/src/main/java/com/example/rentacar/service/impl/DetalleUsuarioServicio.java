@@ -22,5 +22,4 @@ public class DetalleUsuarioServicio implements UserDetailsService {
                         .password(user.getPassword()).build())
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
     }
-
 }
