@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Backend API - Parte2 - Crear una aplicación FullStack con MySQL, SpringBoot y ReactJS</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Backend API - Parte2";
+        var mkdocs_page_input_path = "backendp2.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Crear una aplicación FullStack con MySQL, SpringBoot y ReactJS
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Inicio</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../intro/">Introducción</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../basedatos/">Base de datos</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backendp1/">Backend API - Parte1</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Backend API - Parte2</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#pasos-para-crear-el-proyecto-en-vscode">Pasos para crear el proyecto en VSCode</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#organizar-el-proyecto">Organizar el proyecto</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#creando-las-entidades-jpa">Creando las entidades JPA</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#creando-los-repositorios">Creando los repositorios</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#creando-los-servicios">Creando los servicios</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backendp3/">Backend API - Parte3</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backendp4/">Backend API - Parte4</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backendp5/">Backend API - Parte5</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Crear una aplicación FullStack con MySQL, SpringBoot y ReactJS</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Backend API - Parte2</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="crear-el-proyecto-spring-boot-con-visual-studio-code">Crear el Proyecto Spring Boot con Visual Studio Code</h1>
+<p>Hay Alternativas a VSCode que pueden ser más cómodas de trabajar con Spring Boot (IntelliJ, Spring Tool Suite, entre otros). Sin embargo, vamos a trabajar con VSCode
+debido a la familiaridad que algunos de ustedes tienen con la herramienta.</p>
+<p>En VSCode recomiendo instalar las siguientes extensiones:</p>
+<ul>
+<li>Extension Pack for Java</li>
+<li>Language Support for Java(TM) by Red Hat</li>
+<li>Spring Boot Extension Pack</li>
+<li>spring Boot Gradle Plus (Para instalar dependencias al proyecto con Gradle)</li>
+</ul>
+<h2 id="pasos-para-crear-el-proyecto-en-vscode">Pasos para crear el proyecto en VSCode</h2>
+<ol>
+<li>En ícono del explorador, dar clic en el botón <em>Create Java Project</em>
+   <img alt="imagen" src="../imagenes/imagen006.png" title="Imagen: Botón Create java project." /></li>
+<li><strong>Select project type</strong>: Luego, sale una desde el buscador, el tipo de proyecto. En este punto se selecciona Spring Boot.
+   <img alt="imagen" src="../imagenes/imagen007.png" title="Imagen: Botón Create java project." /></li>
+<li><strong>Select (Spring boot) Project Type</strong>: Se escoge el tipo de proyecto Spring Boot. Acá seleccionaremos <em>Gradle Project</em>
+   <img alt="imagen" src="../imagenes/imagen008.png" title="Imagen: Select (Spring boot) Project Type." /></li>
+<li><strong>Specify Spring boot project version</strong>: Luego, escogemos la versión del proyecto. Utilizaremos la que esté selecciona por defecto.
+   <img alt="imagen" src="../imagenes/imagen009.png" title="Imagen: Spring boot project version." /></li>
+<li><strong>Select proyect language</strong>: En este punto se escoge el lenguaje. Seleccionamos <em>Java</em>
+   <img alt="imagen" src="../imagenes/imagen010.png" title="Imagen: Select proyect language." /></li>
+<li><strong>Input group id</strong>: Luego, seleccionamos el Identificador del grupo (<em>Group id</em>) del proyecto. Para nuestro proyecto, escribiremos "com.ejemplo"
+   <img alt="imagen" src="../imagenes/imagen011.png" title="Imagen: Input group id." /></li>
+<li><strong>Input artefact id</strong>: Ahora, escribiremos el Identificador del artectacto (<em>Artefact Id</em>), es decir nuestra aplicación. Acá escribimos: <em>rentacar</em>
+   <img alt="imagen" src="../imagenes/imagen012.png" title="Imagen: Input artefact id." /></li>
+<li><strong>Specify packaging type</strong>: Luego, seleccionamos el tipo de empaquetamiento del proyecto. Selecionaremos <em>Jar</em>
+   <img alt="imagen" src="../imagenes/imagen013.png" title="Imagen: Specify packaging type." /></li>
+<li><strong>Specify Java version</strong>: En este punto seleccionamos la versión de Java. Lo correcto es escoger la que tenemos instalada en nuestro equipo. <strong>Es necesario tener instalada una versión de java igual o superior a la 17</strong> Si nuestra versión no coincide con la que nos muestra el asistente, la cambiamos luego en el archivo <em>build.gradle</em>:</li>
+</ol>
+<p><code>gradle
+   java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(23)
+    }
+   }</code></p>
+<ol>
+<li><strong>Choose dependencies</strong> Acá selecionamos las dependencias que utilizaremos en el proyecto. en el cuadro <em>Search dependencies</em> las buscamos y presionamos Espacio para seleccionarla. Finalmente, presionamos Enter para continuar.
+    <img alt="imagen" src="../imagenes/imagen014.png" title="Imagen: Choose dependencies." /></li>
+</ol>
+<p>Si no hay errores, se nos presenta una ventana que indica que se creó exitosamente el proyecto y que si deseamos abrir la carpeta del proyecto. Acá damos clic en el botón <em>Open</em></p>
+<h2 id="organizar-el-proyecto">Organizar el proyecto</h2>
+<p>Vamos a tratar de organizar el proyecto con la configuración recomendada. Para eso, le damos clic derecho en el nombre del último paquete dentro de la ruta
+src/main/java/com/example/rentacar y le damos clic a la opción <em>New Java Package</em> le damos un nombre al paquete y luego presionamos <em>Enter</em> para que lo cree.</p>
+<p>Los paquetes a crear inicialmente son entity, controller, service, repository</p>
+<p>Se puede (y se debe) separar más las responsabilidades dentro del proyecto, agregando paquetes como dtos, model, etc. Por el momento lo dejaremos con los paquetes iniciales.</p>
+<h3 id="creando-las-entidades-jpa">Creando las entidades JPA</h3>
+<p>Con base en los objetos de base de datos mostrados en el capítulo anterior, vamos a generar las Entidades de JPA y los repositorios para poder gestionar estas entidades.</p>
+<ol>
+<li>Damos clic derecho en la carpeta de entidades (<em>entity</em>), luego clic en <em>New Java File</em> y luego clic en <em>Class</em></li>
+<li>Le damos el nombre de la clase y presionamos <em>Enter</em>, por ejemplo, la entidad Cliente.
+   Este es el código de la clase Cliente basado en nuestra base de datos:</li>
+</ol>
+<pre><code class="language-java">
+package com.example.rentacar.entity;
+
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import lombok.Data;
+
+@Entity
+@Data
+public class Cliente {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idCliente;
+    private String nombre;
+    private String direccion;
+    private String telefono;
+    private String email;
+
+    @OneToMany(mappedBy = &quot;idReserva&quot;)
+    private List&lt;Reserva&gt; reservas;
+
+}
+
+
+
+</code></pre>
+<p>En JPA, las clases son anotadas para que puedan representar los elementos de la base de datos. Por ejemplo, la anotación @Entity determina que una clase va a representar una tabla en la base de datos. la anotación @Id representa en en el atributo de la clase, la columna identidad de la tabla.
+Otras anotaciones útiles pueden ser consultadas en el siguiente enlace:
+<a href="http://static1.1.sqspcdn.com/static/f/923743/15024995/1320737616283/Manualjpa.pdf?token=WliVrqXbYW75JEEdISncmQN6TNM=">Manual avanzado de JPA</a></p>
+<p>El resto de entidades se puede ver en el repositorio de ejemplo de esta guia.</p>
+<h3 id="creando-los-repositorios">Creando los repositorios</h3>
+<p>Los repositorios JPA nos permiten manejar los datos de las entidades. Hay varios tipos de entidades en JPA que tienen definidos métodos que podemos utilizar para buscar, guardar, actualizar y eliminar datos de las entidades. Una de esas interfaces es CrudRepository, que vamos a utilizar para manejar las entidades que creamos anteriormente. Lo</p>
+<p>Ejemplo de repositorio de Cliente:</p>
+<pre><code class="language-java">
+package com.example.rentacar.repository;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.example.rentacar.entity.Cliente;
+
+public interface ClienteRepositorio extends CrudRepository&lt;Cliente, Integer&gt; {
+
+}
+
+
+</code></pre>
+<p>Al extender la interfaz <em>CrudRepository</em> se tienen disponibles métodos como los siguientes:</p>
+<ul>
+<li>save: guarda una entidad</li>
+<li>saveAll: guarda las entidades de una lista iterable</li>
+<li>findById: busca por el identificador</li>
+<li>existsById: verifica si existe un identificador</li>
+<li>findAll: devuelve todos los elementos para la entidad</li>
+<li>findAllById: busca todos los elementos que tengan el identificador</li>
+<li>count: devuelve el total de registros de la entidad</li>
+<li>deleteById: elimina un registro para el identificador</li>
+<li>delete: elimina la entidad</li>
+<li>deleteAllById: elimina todos los elementos que correspondan con el id</li>
+<li>deleteAll(Iterable): elimina todos los elementos que se reciban en el parámetro</li>
+<li>deleteAll(): elimina todos los elementos</li>
+</ul>
+<p>Más información sobre los repositorios de JPA se puede encontrar en el siguiente enlace:
+<a href="https://docs.spring.io/spring-data/jpa/docs/1.5.0.RELEASE/reference/html/repositories.html">JPA Repositories</a></p>
+<h3 id="creando-los-servicios">Creando los servicios</h3>
+<p>Los servicios los utilizamos para separar las responsabilidades por unidades dentro de la aplicación.
+La idea es que los servicios sean los que implementen a los repositorios y los datos, y que los controladores llamen únicamente a los servicios. También es buena práctica agregar un objeto DTO basado en las entidades para que sea utilizado por los controladores y no usen directamente éstas. En este proyecto por aspectos de simplicidad, de momento vamos a ignorar esta práctica. La práctica que si realizarmos en este guía es hacer una abstracción de los servicios, es decir, realizaremos interfaces para acceder a los servicios. Esto tiene algunas ventajas como modularización, seguridad, entre otros.</p>
+<p>Un ejemplo de servicio para cliente sería realizar la interfaz IClienteServicio que tendrá las definiciones de los servicios y habrá una clase que implementará la interfaz:</p>
+<pre><code class="language-java">package com.example.rentacar.service;
+
+import java.util.List;
+
+import com.example.rentacar.entity.Cliente;
+
+public interface IClienteServicio {
+
+    Cliente crearCliente(Cliente datosCliente) throws Exception;
+
+    Cliente obtenerClientePorId(Integer id) throws Exception;
+
+    List&lt;Cliente&gt; obtenerClientes() throws Exception;
+}
+
+</code></pre>
+<p>También se tiene el código de la clase que implementa la interfaz:</p>
+<pre><code class="language-java">
+package com.example.rentacar.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.rentacar.entity.Cliente;
+import com.example.rentacar.repository.ClienteRepositorio;
+import com.example.rentacar.service.IClienteServicio;
+
+@Service
+public class ClienteServicioImpl implements IClienteServicio {
+
+    @Autowired
+    private ClienteRepositorio repo;
+
+    @Override
+    public Cliente crearCliente(Cliente datosCliente) throws Exception {
+        return repo.save(datosCliente);
+    }
+
+    @Override
+    public Cliente obtenerClientePorId(Integer id) throws Exception {
+        return repo.findById(id).orElseThrow(() -&gt; new Exception(&quot;Cliente no encontrado&quot;));
+    }
+
+    @Override
+    public Iterable&lt;Cliente&gt; obtenerClientes() throws Exception {
+        return repo.findAll();
+    }
+
+}
+
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../backendp1/" class="btn btn-neutral float-left" title="Backend API - Parte1"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../backendp3/" class="btn btn-neutral float-right" title="Backend API - Parte3">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../backendp1/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../backendp3/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

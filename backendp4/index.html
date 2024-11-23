@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Backend API - Parte4 - Crear una aplicación FullStack con MySQL, SpringBoot y ReactJS</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Backend API - Parte4";
+        var mkdocs_page_input_path = "backendp4.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Crear una aplicación FullStack con MySQL, SpringBoot y ReactJS
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Inicio</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../intro/">Introducción</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../basedatos/">Base de datos</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backendp1/">Backend API - Parte1</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backendp2/">Backend API - Parte2</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backendp3/">Backend API - Parte3</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Backend API - Parte4</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#asegurar-las-rutas-del-api">Asegurar las rutas del API</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#agregar-la-dependencia-de-spring-security-al-proyecto">Agregar la dependencia de Spring security al proyecto</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#agregar-las-dependencia-por-medio-de-la-extension-de-vscode">Agregar las dependencia por medio de la Extensión de VSCode</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#agregar-la-dependencia-de-forma-manual">Agregar la dependencia de forma manual</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#agregar-la-dependencia-de-jwt">Agregar la dependencia de JWT</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#desarrollar-la-seguridad-en-spring-boot">Desarrollar la seguridad en Spring boot</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#clases-de-configuracion">Clases de configuración</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#filtro-y-servicio-jsonwebtoken">Filtro y servicio Jsonwebtoken</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#servicio-de-usuario-y-la-implementacion-de-userdetails">Servicio de usuario y la implementación de UserDetails</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#entidad-usuario-y-repositorio">Entidad usuario y repositorio</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#el-controlador-de-usuario-y-los-dto-requeridos">El Controlador de usuario y los DTO requeridos</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#prueba-de-la-seguridad-de-la-api-con-postman">Prueba de la seguridad de la api con Postman</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#consulta-a-una-url-protegida">Consulta a una URL protegida</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#registro-de-usuario">Registro de usuario</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#login-de-usuario-para-obtener-el-token">Login de usuario para obtener el token</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backendp5/">Backend API - Parte5</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Crear una aplicación FullStack con MySQL, SpringBoot y ReactJS</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Backend API - Parte4</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="desarrollo-del-backend-api-ii">Desarrollo del Backend API (II)</h1>
+<h2 id="asegurar-las-rutas-del-api">Asegurar las rutas del API</h2>
+<p>Es importante proteger los endpoints de la api con el propósito de que no sean accesibles para cualquier usuario, principalmente, un usuario que no se haya autenticado en nuestra aplicación.</p>
+<p>Hay varias formas de lograr esto. Nosotros utilizaremos un protocolo llamadno <em>Json Web Token (JWT)</em>, que es un método popular para proteger las aplicaciones web modernas. Los JWT permiten transmitir información de forma segura entre partes como un objeto JSON compacto, autónomo y firmado digitalmente.</p>
+<p>JWT, por ser un protolo, se puede implementar en una amplia gama frameworks, de distintos tipos de lenguajes de programación.</p>
+<p>Acá se puede encontrar más información sobre JWT: <a href="https://jwt.io/">https://jwt.io/</a></p>
+<p>Para la seguridad de un proyecto de spring (o spring boot) utilizaremos el proyecto/libreria Spring Security, del ecosistema Spring, y esto nos facilitará de manera sustancial, el trabajo que queremos hacer.</p>
+<h3 id="agregar-la-dependencia-de-spring-security-al-proyecto">Agregar la dependencia de Spring security al proyecto</h3>
+<h4 id="agregar-las-dependencia-por-medio-de-la-extension-de-vscode">Agregar las dependencia por medio de la Extensión de VSCode</h4>
+<p>Si instalamos la extensión <em>spring boot gradle plus</em>, vamos al buscador y escribimos los siguiente:</p>
+<pre><code class="language-gradle">&gt; Add a dependency
+
+</code></pre>
+<p>Sale una ventana como se ve en la imagen:</p>
+<p><img alt="imagen" src="../imagenes/imagen021.png" title="Imagen: Prueba de petición Delete clientes" /></p>
+<p>En la ventana que sale, escribimos "security" y seleccionamos la dependencia spring-boot-starter-security</p>
+<h4 id="agregar-la-dependencia-de-forma-manual">Agregar la dependencia de forma manual</h4>
+<p>También podemos agregar la información de forma manual.</p>
+<p>En el archivo build.gradle agregamos la siguiente línea en la sección de dependencias:</p>
+<pre><code class="language-gradle">implementation 'org.springframework.boot:spring-boot-starter-security'
+</code></pre>
+<h4 id="agregar-la-dependencia-de-jwt">Agregar la dependencia de JWT</h4>
+<p>para agregar la dependencia de JWT (una dependencia externa a Spring boot), agregamos la siguiente línea a la sección de dependencias del archivo build.gradle:</p>
+<pre><code class="language-gradle">implementation 'org.springframework.boot:spring-boot-starter-security'
+implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.12.6'
+runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.12.6'
+runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.12.6'
+
+</code></pre>
+<h3 id="desarrollar-la-seguridad-en-spring-boot">Desarrollar la seguridad en Spring boot</h3>
+<p>En resumen, de la siguiente manera utilizaremos las tecnologías y herramientas agregadas al proyecto:</p>
+<ul>
+<li>Con Spring Security, Creamos las clases para la configuración de la aplicación para la seguridad: ApplicationConfig, SecurityConfig. En estas clases se realiza el proceso de configuración de seguridad los endpoints, cuales deben pasar por validaciónd e token (<em>autenticated</em>) y cuales deben permitirse sin autenticación (<em>permitAll</em>)</li>
+<li>Implementación de interfaces que ayudan al proceso de autenticación: User y UserDetails</li>
+<li>Implementación del filtro de seguridad: OncePerRequestFilter (esto se hace en el filtro JwtAuthFilter)</li>
+<li>Con JsonWebToken hacemos el servicio de creación y validación del token (JwtServicio)</li>
+<li>Se crea la entidad de usuario con su respectivo repositorio</li>
+<li>Se crea el Servicio de usuario, que tendrá el registro de usuario y el login</li>
+<li>El Controlador de usuario, para manejar las peticiones de las acciones anteriores.</li>
+</ul>
+<h4 id="clases-de-configuracion">Clases de configuración</h4>
+<p>Creamos las clases de configuración: ApplicationConfig, SecurityConfig</p>
+<pre><code class="language-java">//ApplicationConfig.java
+@Configuration
+public class ApplicationConfig {
+
+    @Autowired
+    private DetalleUsuarioServicio detalleUsuarioServicio;
+
+    @Bean
+    public BCryptPasswordEncoder decodificador() {
+        return new BCryptPasswordEncoder();
+    };
+
+    @Bean
+    public AuthenticationManager authenticationManager(HttpSecurity http, BCryptPasswordEncoder bCryptPasswordEncoder)
+            throws Exception {
+        AuthenticationManagerBuilder auth = http.getSharedObject(AuthenticationManagerBuilder.class);
+        auth.userDetailsService(detalleUsuarioServicio).passwordEncoder(bCryptPasswordEncoder);
+        return auth.build();
+    }
+}
+
+
+//SecurityConfig
+@Configuration
+@EnableWebSecurity
+@RequiredArgsConstructor
+public class SecurityConfig {
+
+    @Autowired
+    private JwtAuthFilter jwtAuthFilter;
+
+    private static final String[] AUTH_WHITELIST = {
+            &quot;/api/auth/login&quot;,
+            &quot;/api/auth/registro&quot;
+    };
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeRequests(authorizeRequests -&gt; authorizeRequests.requestMatchers(AUTH_WHITELIST).permitAll()
+                        .anyRequest().authenticated())
+                .sessionManagement(
+                        sessionManagement -&gt; sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+        return http.build();
+    }
+}
+
+</code></pre>
+<p>El SecurityFilterChain es un filtro de servlet que es responsable de toda la seguridad (proteger las URL de la aplicación, validar el nombre de usuario y las contraseñas enviadas, redirigir al formulario de inicio de sesión, etc.) dentro de su aplicación.</p>
+<p>En la clase ApplicationConfig, se tiene el AuthenticationManager, que intenta autenticar el objeto de autenticación pasado y devuelve un objeto de autenticación completamente poblado (incluidas las autoridades otorgadas) si tiene éxito.</p>
+<h4 id="filtro-y-servicio-jsonwebtoken">Filtro y servicio Jsonwebtoken</h4>
+<pre><code class="language-java">
+@Component
+@RequiredArgsConstructor
+public class JwtAuthFilter extends OncePerRequestFilter {
+
+    @Autowired
+    private JwtServicio servicioJwt;
+
+    @Autowired
+    private DetalleUsuarioServicio detalleUsuarioServicio;
+
+    @Override
+    protected void doFilterInternal(@SuppressWarnings(&quot;null&quot;) HttpServletRequest request, HttpServletResponse response,
+            FilterChain filterChain)
+            throws ServletException, IOException {
+        if (request.getServletPath().contains(&quot;/api/auth&quot;)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        String cabeceraAutorizacion = request.getHeader(&quot;Authorization&quot;);
+
+        if (cabeceraAutorizacion == null || !cabeceraAutorizacion.startsWith(&quot;Bearer &quot;)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        String jwtToken = cabeceraAutorizacion.substring(&quot;Bearer &quot;.length());
+        String nombreUsuario = servicioJwt.extraerUsuario(jwtToken);
+
+        if (nombreUsuario != null &amp;&amp; SecurityContextHolder.getContext().getAuthentication() == null) {
+            UserDetails detalleUsuario = detalleUsuarioServicio.loadUserByUsername(nombreUsuario);
+            if (servicioJwt.validarToken(jwtToken, detalleUsuario)) {
+                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                        detalleUsuario, null, detalleUsuario.getAuthorities());
+                authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+            }
+        }
+        filterChain.doFilter(request, response);
+
+    }
+}
+
+</code></pre>
+<p>El filtro utiliza el servicio para validar las URLs del backend </p>
+<pre><code class="language-java">
+@Service
+public class JwtServicio {
+    private final String USUARIO_CLAIM = &quot;usuario&quot;;
+    private final String EXPIRACION_CLAIM = &quot;exp&quot;;
+
+    @Value(&quot;${jwt.secret}&quot;)
+    private String secreto;
+
+
+    public String extraerUsuario(String jwtToken) {
+        final Claims claims = extraerTodosClaims(jwtToken);
+        return claims.get(USUARIO_CLAIM, String.class);
+    }
+
+    private Claims extraerTodosClaims(String jwtToken) {
+        return Jwts.parser().verifyWith(obtenerClaveDeFirma()).build().parseSignedClaims(jwtToken).getPayload();
+    }
+
+    private SecretKey obtenerClaveDeFirma() {
+        byte[] bytes = Decoders.BASE64.decode(secreto);
+        return Keys.hmacShaKeyFor(bytes);
+    }
+
+    public boolean validarToken(String jwtToken, UserDetails detalleUsuario) {
+        String usuario = extraerUsuario(jwtToken);
+        return usuario.equals(detalleUsuario.getUsername()) &amp;&amp; !esTokenExpirado(jwtToken);
+    }
+
+    private boolean esTokenExpirado(String jwtToken) {
+        return extraerExpiracionToken(jwtToken).before(new Date());
+    }
+
+    private Date extraerExpiracionToken(String jwtToken) {
+        Claims claims = extraerTodosClaims(jwtToken);
+        return claims.get(EXPIRACION_CLAIM, Date.class);
+    }
+
+    public String generarToken(Usuario usuario) {
+        return crearToken(usuario);
+    }
+
+    private String crearToken(Usuario usuario) {
+        return Jwts.builder().claim(USUARIO_CLAIM, usuario.getUsuario())
+                .issuedAt(new Date(System.currentTimeMillis()))
+                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
+                .signWith(obtenerClaveDeFirma())
+                .compact();
+    }
+}
+</code></pre>
+<p>El servicio JwtServicio implementa los métodos necesarios para crear y validar tokens, así como extraer de estos los reclamos (claims) de la carga útil.</p>
+<p>Hay que tener en cuenta que se debe registrar en el archivo properties, la propiedad de la variable
+secreto (jwt.secret), algo como esto:</p>
+<pre><code class="language-properties">jwt.secret=9a4f2c8d3b7b1c5f47c3a0b2m387d8b1d4e6f3c8a9d2b5f8e3a9c8b5f6v8a3d9
+</code></pre>
+<h3 id="servicio-de-usuario-y-la-implementacion-de-userdetails">Servicio de usuario y la implementación de UserDetails</h3>
+<pre><code class="language-java">@Service
+public class DetalleUsuarioServicio implements UserDetailsService {
+
+    @Autowired
+    private UsuarioRepositorio repoUsuario;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return repoUsuario.findByUsuario(username)
+                .map(user -&gt; User.builder().username(user.getUsuario())
+                        .password(user.getPassword()).build())
+                .orElseThrow(() -&gt; new UsernameNotFoundException(&quot;Usuario no encontrado&quot;));
+    }
+}
+
+</code></pre>
+<pre><code class="language-java">@Service
+public class UsuarioServicioImpl implements IUsuarioServicio {
+
+    private final BCryptPasswordEncoder codificadorPassword = new BCryptPasswordEncoder();
+
+    @Autowired
+    private JwtServicio servicioJwt;
+
+    @Autowired
+    private AuthenticationManager managerAutenticacion;
+
+    @Autowired
+    private UsuarioRepositorio repo;
+
+    @Override
+    public UsuarioDTO registro(UsuarioDTO usuarioDto) {
+        Usuario usuario = new Usuario();
+        usuario.setIdUsuario(usuarioDto.getIdUsuario());
+        usuario.setEmail(usuarioDto.getEmail());
+        usuario.setNombre(usuarioDto.getNombre());
+        usuario.setPassword(codificadorPassword.encode(usuarioDto.getPassword()));
+        usuario.setUsuario(usuarioDto.getUsuario());
+        usuario = repo.save(usuario);
+        return UsuarioDTO.builder()
+                .email(usuario.getEmail())
+                .idUsuario(usuario.getIdUsuario())
+                .nombre(usuario.getNombre())
+                .usuario(usuario.getUsuario())
+                .password(usuario.getPassword())
+                .build();
+    }
+
+    @Override
+    public String login(LoginDTO login) {
+
+        managerAutenticacion
+                .authenticate(new UsernamePasswordAuthenticationToken(login.getUsuario(), login.getPassword()));
+        Usuario usuario = repo.findByUsuario(login.getUsuario())
+                .orElseThrow(() -&gt; new EntityNotFoundException(&quot;Usuario no encontrado&quot;));
+        return servicioJwt.generarToken(usuario);
+    }
+}
+
+</code></pre>
+<p>La implementación de la intefaz UserDetailsService se usa para tener acceso a los detalles del usuario que se loguea: usario, contraseña, email, entre otros.</p>
+<p>La clase <em>UsuarioServicio</em> tiene los métodos de registro de usuario en la base de datos y el método de logín, que usa el Manejador de autenticación <em>AuthenticationManager</em></p>
+<h3 id="entidad-usuario-y-repositorio">Entidad usuario y repositorio</h3>
+<pre><code class="language-java">
+@Entity
+@Data
+public class Usuario {
+
+    @Id
+    private Integer idUsuario;
+    private String usuario;
+    private String password;
+    private String nombre;
+    private String email;
+
+}
+
+</code></pre>
+<pre><code class="language-java">public interface UsuarioRepositorio extends JpaRepository&lt;Usuario, Integer&gt; {
+    Optional&lt;Usuario&gt; findByUsuario(String usuario);
+}
+
+</code></pre>
+<p>En el repositorio de la entidad del Usuario, declaramos un método para optener un usuario por su nombre de usuario (es decir, el atributo usuario).</p>
+<h3 id="el-controlador-de-usuario-y-los-dto-requeridos">El Controlador de usuario y los DTO requeridos</h3>
+<pre><code class="language-java">
+@RestController
+@RequestMapping(&quot;/api/auth&quot;)
+@RequiredArgsConstructor
+public class UsuarioControlador {
+
+    @Autowired
+    private UsuarioServicioImpl usuarioServicio;
+
+    @PostMapping(&quot;/registro&quot;)
+    public ResponseEntity&lt;UsuarioDTO&gt; registrarUsuario(@RequestBody UsuarioDTO entity) {
+        UsuarioDTO usuarioDTO = usuarioServicio.registro(entity);
+        return ResponseEntity.ok().body(usuarioDTO);
+    }
+
+    @PostMapping(&quot;/login&quot;)
+    public ResponseEntity&lt;String&gt; login(@RequestBody LoginDTO entity) {
+        return ResponseEntity.ok().body(usuarioServicio.login(entity));
+    }
+
+}
+</code></pre>
+<pre><code class="language-java">
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
+public class UsuarioDTO {
+    private Integer idUsuario;
+    private String usuario;
+    private String password;
+    private String nombre;
+    private String email;
+}
+
+</code></pre>
+<pre><code class="language-java">
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
+public class LoginDTO {
+
+    private String usuario;
+    private String password;
+
+}
+
+</code></pre>
+<p>El controlador de usuario maneja los endpoint para el registro y el login del usuario</p>
+<h2 id="prueba-de-la-seguridad-de-la-api-con-postman">Prueba de la seguridad de la api con Postman</h2>
+<p>Luego de configurada la aplicación, la ejecutamos y probamos la seguridad implementada:</p>
+<p>Hacemos una petición a una ruta protegida: Ejemplo GET clientes</p>
+<h3 id="consulta-a-una-url-protegida">Consulta a una URL protegida</h3>
+<p><img alt="imagen" src="../imagenes/imagen023.png" title="Imagen: Prueba de petición Get clientes con protección de URL" /></p>
+<p>Notamos que la respuesta es 403: Forbbiden, es decir, no tenemos permiso para acceder a ese recurso.</p>
+<p>Entonces debemos primero, registrar un usuario, si no tenemos, y loguearlo en la aplicación para obtener el token:</p>
+<h3 id="registro-de-usuario">Registro de usuario</h3>
+<p><img alt="imagen" src="../imagenes/imagen024.png" title="Imagen: Registro del usuario" /></p>
+<h3 id="login-de-usuario-para-obtener-el-token">Login de usuario para obtener el token</h3>
+<p>Como ya registramos un usuario, vamos al endpoint de login para poder obtener el token de acceso a las URLs protegidas</p>
+<p><img alt="imagen" src="../imagenes/imagen025.png" title="Imagen: login del usuario para obtener el token" /></p>
+<p>Ahora, utilizamos el token generado para poder acceder a las rutas protegidas: En la petición buscamos la pestaña <em>Autorization</em> y ahí incluimos la cabecerar <em>Bearer authentication</em>, y agregamos el token y hacemos la petición.</p>
+<p><img alt="imagen" src="../imagenes/imagen026.png" title="Imagen: registrar el token para acceder a la URL" /></p>
+<p>Acá solamente es ejecutar la petición y esperar la respuesta:</p>
+<p><img alt="imagen" src="../imagenes/imagen027.png" title="Imagen: registrar el token para acceder a la URL" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../backendp3/" class="btn btn-neutral float-left" title="Backend API - Parte3"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../backendp5/" class="btn btn-neutral float-right" title="Backend API - Parte5">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../backendp3/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../backendp5/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

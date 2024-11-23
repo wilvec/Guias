@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Backend API - Parte5 - Crear una aplicación FullStack con MySQL, SpringBoot y ReactJS</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Backend API - Parte5";
+        var mkdocs_page_input_path = "backendp5.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Crear una aplicación FullStack con MySQL, SpringBoot y ReactJS
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Inicio</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../intro/">Introducción</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../basedatos/">Base de datos</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backendp1/">Backend API - Parte1</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backendp2/">Backend API - Parte2</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backendp3/">Backend API - Parte3</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backendp4/">Backend API - Parte4</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Backend API - Parte5</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#preparar-el-proyecto-para-empaquetar">Preparar el proyecto para "Empaquetar"</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#crear-el-archivo-dockerfile">Crear el archivo Dockerfile</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#crear-el-archivo-dockerignore">Crear el archivo .dockerignore</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#construir-la-imagen">Construir la imagen</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#ejecutar-el-contenedor">Ejecutar el contenedor</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#agregar-el-backend-al-docker-compose">Agregar el backend al docker compose</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cambiar-la-configuracion-de-conexion-a-la-base-de-datos">Cambiar la configuración de conexión a la base de datos</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ejecutar-todo-junto">Ejecutar todo junto</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#probando-todo-junto">Probando todo junto</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Crear una aplicación FullStack con MySQL, SpringBoot y ReactJS</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Backend API - Parte5</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="despliegue-del-backend-con-docker">Despliegue del backend con Docker</h1>
+<p>Una vez finalizado todo el desarrollo del backend, vamos a automatizar el despliegue de este componente con 
+docker. Ya vimos algo de este proceso cuando contenerizamos la base de datos.</p>
+<h2 id="preparar-el-proyecto-para-empaquetar">Preparar el proyecto para "Empaquetar"</h2>
+<p>Lo primero que debemos hacer es generar el archivo JAR o WAR de ejecución de la aplicación. Para esto, con gradle  ejecutamos el siguiente comando:</p>
+<pre><code class="language-bat">./gradlew bootJar
+
+</code></pre>
+<p>Esto generará un archivo .jar en el directorio build/libs/ (por ejemplo, build/libs/rentacar-0.0.1-SNAPSHOT.jar).</p>
+<h2 id="crear-el-archivo-dockerfile">Crear el archivo Dockerfile</h2>
+<p>El archivo Dockerfile crea la imagen del contenedor para nuestra aplicación, el siguiente es el código de ese archivo para el proyecto:</p>
+<pre><code class="language-dockerfile">
+# Usa una imagen base con Java
+FROM eclipse-temurin:23-jdk-alpine
+
+# Crea un directorio para la aplicación
+WORKDIR /app
+
+# Copia el archivo JAR generado por Gradle al contenedor
+COPY build/libs/rentacar-0.0.1-SNAPSHOT.jar app.jar
+
+# Expone el puerto en el que tu aplicación se ejecutará
+EXPOSE 8080
+
+# Comando para ejecutar la aplicación
+ENTRYPOINT [&quot;java&quot;, &quot;-jar&quot;, &quot;app.jar&quot;]
+</code></pre>
+<h3 id="crear-el-archivo-dockerignore">Crear el archivo .dockerignore</h3>
+<p>El archivo .dockerignore se utiliza para excluir archivos y carpetas innecesarias al construir la imagen:</p>
+<pre><code class="language-properties">build/
+.gradle/
+*.git
+*.idea
+logs/
+
+</code></pre>
+<h2 id="construir-la-imagen">Construir la imagen</h2>
+<p>En la raiz del proyecto, donde creamos el Dockerfile, ejecutamos el comando para construir la imagen:</p>
+<pre><code class="language-bat">docker build -t rentacar-be .
+</code></pre>
+<h3 id="ejecutar-el-contenedor">Ejecutar el contenedor</h3>
+<p>Una vez creada la imagen, si no se nos presenta algún problema, podemos ejecutar el contendor con el siguiente comando:</p>
+<pre><code class="language-bat">docker run -d --name rentacar-be -p 8085:8085/tcp rentacar-be
+
+</code></pre>
+<p>Este comando no ayuda a crear y ejecutar un contenedor basado en la imagen de la aplicación.
+Al ejecutar el contenedor, debe salir en la terminal el ID del contenedor, si no se presentó ningún error.</p>
+<p><img alt="imagen" src="../imagenes/imagen028.png" title="Imagen: Salida comando docker run" /></p>
+<p>Si ejecutamos la aplicación, probamos el postman el login, nos sale el siguiente error:</p>
+<p><img alt="imagen" src="../imagenes/imagen029.png" title="Imagen: Error al probar con postman" /></p>
+<p>Podemos revisar los errores que se presenten en las aplicaciones dentro de los contenedores. Con el siguiente comando podemos ver los logs de la aplicación ejecutándose en el contenedor:</p>
+<pre><code class="language-bat">docker logs rentacar-be
+</code></pre>
+<p>Podemos ver, al final del log un error similar al siguiente:</p>
+<pre><code class="language-log">The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+        at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[na:na]
+        at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501) ~[na:na]
+        at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485) ~[na:na]
+        at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61) ~[mysql-connector-j-8.3.0.jar!/:8.3.0]
+        at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:104) ~[mysql-connector-j-8.3.0.jar!/:8.3.0]
+        at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:149) ~[mysql-connector-j-8.3.0.jar!/:8.3.0]
+        at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:165) ~[mysql-connector-j-8.3.0.jar!/:8.3.0]
+        at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:88) ~[mysql-connector-j-8.3.0.jar!/:8.3.0]
+        at com.mysql.cj.NativeSession.connect(NativeSession.java:120) ~[mysql-connector-j-8.3.0.jar!/:8.3.0]
+        at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:935) ~[mysql-connector-j-8.3.0.jar!/:8.3.0]
+        at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:805) ~[mysql-connector-j-8.3.0.jar!/:8.3.0]
+        ... 139 common frames omitted
+Caused by: java.net.ConnectException: Connection refused
+        at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+        at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682) ~[na:na]
+        at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542) ~[na:na]
+        at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592) ~[na:na]
+        at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
+        at java.base/java.net.Socket.connect(Socket.java:760) ~[na:na]
+        at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:153) ~[mysql-connector-j-8.3.0.jar!/:8.3.0]
+        at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:62) ~[mysql-connector-j-8.3.0.jar!/:8.3.0]
+        ... 142 common frames omitted
+</code></pre>
+<p>Este error se debe a que el contenedor del backend no está accediendo a la base de datos que está en su propio contenedor, no en el host. Para corregir esto debemos hacer dos cosas: primero, agregar el contenedor de docker en el script del docker compose y agregarlo a la misma red del contenedor de la base de datos, y segundo, cambiar la línea de conexión a la base de datos en el application.properties:</p>
+<h4 id="agregar-el-backend-al-docker-compose">Agregar el backend al docker compose</h4>
+<p>Ajustamos el archivo <em>docker-compose.yml</em> anterior para agregar la información del backend:</p>
+<pre><code class="language-dockerfile">services:
+  mysql:
+    image: mysql
+    container_name: mysql
+    ports:
+      - 3307:3306
+    networks:
+     - redfullstack
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=rentacardb
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin
+    volumes:
+      - mysql_data:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin
+    environment:
+      - PMA_HOST=mysql
+    depends_on:
+      - mysql
+    container_name: phpmyadmin
+    ports:
+      - 8180:80
+    networks:
+     - redfullstack
+  rentacar_be:
+    image: rentacar-be
+    container_name: rentacar_be
+    restart: always
+    ports:
+      - 8085:8085
+    networks:
+     - redfullstack
+    depends_on:
+      - mysql
+networks:
+  redfullstack:
+    driver: bridge
+volumes:
+  mysql_data:
+</code></pre>
+<h3 id="cambiar-la-configuracion-de-conexion-a-la-base-de-datos">Cambiar la configuración de conexión a la base de datos</h3>
+<p>Ahora, debemos cambiar la configuración conexión a la base de datos en el backend, en el archivo properties, cambiamos la
+línea:</p>
+<pre><code class="language-properties">spring.datasource.url=jdbc:mysql://localhost:3307/rentacardb
+</code></pre>
+<p>Por esta:</p>
+<pre><code class="language-properties">spring.datasource.url=jdbc:mysql://mysql:3306/rentacardb
+</code></pre>
+<h2 id="ejecutar-todo-junto">Ejecutar todo junto</h2>
+<p>Ahora solamente es compilar nuevamente el backend y recrear la imagen con el nuevo cambio y luego ejecutar el docker compose:</p>
+<pre><code class="language-bat">./gradlew bootJar
+
+docker build -t rentacar-be .
+
+docker compose up -d
+</code></pre>
+<h2 id="probando-todo-junto">Probando todo junto</h2>
+<p>Una vez se ejecuta el docker compose, con los contenedores arriba, procedemos a hacer pruebas:</p>
+<p><img alt="imagen" src="../imagenes/imagen030.png" title="Imagen: Solución al probar con postman: login" /></p>
+<p><img alt="imagen" src="../imagenes/imagen031.png" title="Imagen: Solución al probar con postman: obtener clientes" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../backendp4/" class="btn btn-neutral float-left" title="Backend API - Parte4"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../backendp4/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

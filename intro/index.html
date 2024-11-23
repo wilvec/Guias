@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Introducción - Crear una aplicación FullStack con MySQL, SpringBoot y ReactJS</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Introducci\u00f3n";
+        var mkdocs_page_input_path = "intro.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Crear una aplicación FullStack con MySQL, SpringBoot y ReactJS
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Inicio</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Introducción</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#organizacion-recomendada-del-proyecto">Organización Recomendada del proyecto</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#herramientas-a-utilizar">Herramientas a utilizar</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../basedatos/">Base de datos</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backendp1/">Backend API - Parte1</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backendp2/">Backend API - Parte2</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backendp3/">Backend API - Parte3</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backendp4/">Backend API - Parte4</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backendp5/">Backend API - Parte5</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Crear una aplicación FullStack con MySQL, SpringBoot y ReactJS</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Introducción</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="introduccion">Introducción</h1>
+<p>Con esta guia se pretende orientar en el proceso de crear una aplicación backend para un
+proyecto específico: Un negocio de renta de autos.
+La idea de este proyecto es poder hacer el backend API de un proyecto basado en Arquitectura de tres capas.
+Para la capa de persistencia se utilizará una base de datos relacional: <a href="https://www.mysql.com/products/community/">MySQL</a>.
+Para el backend Esta será la primera parte: El backend, utilizaremos el framework <a href="https://spring.io/projects/spring-boot">Spring Boot</a>.
+Finalmente se creará un aplicación Frontend para la interfaz de usuario, con <a href="https://react.dev/">ReactJS</a>.
+Para cada uno de los componentes de la Arquitectura del sistema, se tratará de crear un contenedor (docker). De esta forma,
+será más fácil el proceso de despliegue de estos componentes.</p>
+<h2 id="organizacion-recomendada-del-proyecto">Organización Recomendada del proyecto</h2>
+<p>Hay muchas opciones para poder organizar el sistema. Una de las más sencillas es crear una estructura similar a la siguiente:<br/>
+<br/>
+--proyecto<br/>
+----proyecto-db # <em>Acá va la configuración de base de datos o los archivos que necesite de base de datos el proyecto completo</em> .<br/>
+----proyecto-be # <em>En esta carpeta va nuestro proyecto de Backend</em> <br/>
+----proyecto-fe # <em>En esta carpeta va el Frontend</em> <br/>
+<br/></p>
+<h2 id="herramientas-a-utilizar">Herramientas a utilizar</h2>
+<p>Las herramientas a utilizar por cada compomente del proyecto se muestran en la siguiente tabla:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Componente</strong></th>
+<th><strong>Herramienta</strong></th>
+<th><strong>Descripción</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base de datos</td>
+<td><a href="https://www.mysql.com/products/community/">Mysql</a></td>
+<td>Es el motor de base de datos que se utilizara.</td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://www.mysql.com/products/workbench/">MySQL Workbench</a></td>
+<td>Herramienta que nos servirá para gestionar la base de datos (Crear objetos, crear modelos, insertar datos manuales, etc)</td>
+</tr>
+<tr>
+<td>Backend</td>
+<td><a href="https://spring.io">Spring</a></td>
+<td>Framework que se utilizará para el desarrollo del Backend</td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://www.postman.com/">Postman</a></td>
+<td>Herramienta para pruebas de API REST</td>
+</tr>
+<tr>
+<td>Frontend</td>
+<td><a href="https://react.dev/">ReactJS</a></td>
+<td>Framework para el desarrollo de la interfaz de usuario</td>
+</tr>
+</tbody>
+</table>
+<p>A nivel general utilizaremos las siguientes herramientas:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Herramienta</strong></th>
+<th><strong>Descripción</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://code.visualstudio.com/">Visual Studio Code</a></td>
+<td>Para codificar los componentes de backend y frontend</td>
+</tr>
+<tr>
+<td><a href="https://www.jetbrains.com/es-es/idea/">IntelliJ</a></td>
+<td>Igual que la anterior</td>
+</tr>
+<tr>
+<td><a href="https://www.docker.com/">Docker</a></td>
+<td>Lo utilizaremos para empaquetar nuestros componentes</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Inicio"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../basedatos/" class="btn btn-neutral float-right" title="Base de datos">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../basedatos/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

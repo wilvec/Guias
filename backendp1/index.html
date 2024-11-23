@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Backend API - Parte1 - Crear una aplicación FullStack con MySQL, SpringBoot y ReactJS</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Backend API - Parte1";
+        var mkdocs_page_input_path = "backendp1.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Crear una aplicación FullStack con MySQL, SpringBoot y ReactJS
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Inicio</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../intro/">Introducción</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../basedatos/">Base de datos</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Backend API - Parte1</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#fundamentos-del-desarrollo-web-backend">Fundamentos del Desarrollo Web Backend</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ventajas-de-usar-spring-boot">Ventajas de Usar Spring Boot</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#crear-un-proyecto-con-spring-boot">Crear un proyecto con Spring Boot</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#estructura-de-un-proyecto-en-spring-boot">Estructura de un proyecto en Spring Boot</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backendp2/">Backend API - Parte2</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backendp3/">Backend API - Parte3</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backendp4/">Backend API - Parte4</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../backendp5/">Backend API - Parte5</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Crear una aplicación FullStack con MySQL, SpringBoot y ReactJS</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Backend API - Parte1</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="backend-con-spring-boot">Backend con Spring Boot</h1>
+<p><img alt="imagen" src="https://cursosdedesarrollo.com/wp-content/uploads/2022/03/spring-boot.png" title="Imagen: Logo de SpringBoot" /></p>
+<p>El desarrollo web backend se refiere a la creación y gestión de la parte del servidor de una aplicación web. Es la columna vertebral que sostiene las operaciones y funcionalidades que el usuario no ve directamente, pero que son cruciales para el funcionamiento del sitio web. Esta parte del desarrollo se centra en la base de datos, la lógica del servidor, la autenticación del usuario, la manipulación de datos y la comunicación entre el servidor y el cliente.</p>
+<h2 id="fundamentos-del-desarrollo-web-backend">Fundamentos del Desarrollo Web Backend</h2>
+<p>El backend está compuesto por varios elementos clave:</p>
+<p><strong>Servidor Web</strong>: Maneja las solicitudes del cliente y las respuestas del servidor.</p>
+<p><strong>Base de Datos</strong>: Almacena y gestiona los datos que utiliza la aplicación.</p>
+<p><strong>APIs</strong>: Conectan diferentes partes de la aplicación y permiten la comunicación entre diferentes servicios.</p>
+<p><strong>Lenguajes de Programación</strong>: Como Java, Python, Ruby, y Node.js, que se utilizan para escribir la lógica del servidor.</p>
+<p>El backend es responsable de asegurar que la aplicación web sea segura, eficiente y escalable. La elección de herramientas y tecnologías adecuadas es esencial para el desarrollo exitoso de aplicaciones robustas y de alto rendimiento.</p>
+<h2 id="ventajas-de-usar-spring-boot">Ventajas de Usar Spring Boot</h2>
+<p>Spring Boot es un marco de desarrollo para aplicaciones backend basado en Java que ha ganado popularidad por su simplicidad y capacidad para acelerar el desarrollo de aplicaciones empresariales. Aquí algunas de sus ventajas:</p>
+<p><strong>Configuración Simplificada</strong>: Spring Boot elimina la necesidad de configuraciones complejas. Utiliza convenciones sobre configuraciones, lo que permite a los desarrolladores centrarse más en la lógica de negocio que en las configuraciones.</p>
+<p><strong>Desarrollo Rápido</strong>: Con su enfoque basado en principios de opinión, permite un arranque rápido de aplicaciones. Su generador de proyectos inicializa rápidamente los proyectos con las dependencias adecuadas.</p>
+<p><strong>Integración con El ecosistema Spring</strong>: Spring Boot es parte del ecosistema de Spring, que ofrece una amplia gama de herramientas y bibliotecas, como Spring Security para la gestión de seguridad y Spring Data para la interacción con bases de datos.</p>
+<p><strong>Microservicios</strong>: Es ideal para el desarrollo de aplicaciones basadas en microservicios, debido a su capacidad para crear servicios independientes y desplegables que pueden comunicarse entre sí.</p>
+<p><strong>Amplia Comunidad y Soporte</strong>: Cuenta con una comunidad activa y una gran cantidad de recursos y documentación, lo que facilita la resolución de problemas y la búsqueda de soluciones.</p>
+<p><strong>Monitoreo y Gestión</strong>: Spring Boot Actuator proporciona herramientas para monitorear y gestionar aplicaciones en producción, facilitando el mantenimiento y la detección de problemas.</p>
+<p>En resumen, el desarrollo backend es fundamental para la funcionalidad y el rendimiento de una aplicación web, y elegir el marco adecuado puede marcar una gran diferencia. Spring Boot ofrece una serie de ventajas que lo hacen una excelente opción para desarrolladores que buscan rapidez, simplicidad y robustez en sus proyectos.</p>
+<h2 id="crear-un-proyecto-con-spring-boot">Crear un proyecto con Spring Boot</h2>
+<p>Para crear un proyecto con Spring Boot, basta con utilizar la herramienta basada en la web: <a href="https://start.spring.io/">Spring Initializr</a>:</p>
+<p><img alt="imagen" src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20230407111514/Spring-Cloud-1.png" title="Imagen: Herramienta para crear proyectos de Spring Boot" /></p>
+<p>Esta herramienta es bastante intuitiva y genera un arquetipo de una aplicación de Spring Boot con todo lo que necesitemos para nuestro sistema.</p>
+<h3 id="estructura-de-un-proyecto-en-spring-boot">Estructura de un proyecto en Spring Boot</h3>
+<p>Una estructura común de un proyecto en Spring Boot es la siguiente:</p>
+<pre>
+my-spring-boot-project/
+│
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── mycompany/
+│   │   │           └── myproject/
+│   │   │               ├── MySpringBootApplication.java
+│   │   │               ├── controller/
+│   │   │               │   └── MyController.java
+│   │   │               ├── service/
+│   │   │               │   └── MyService.java
+│   │   │               ├── repository/
+│   │   │               │   └── MyRepository.java
+│   │   │               └── model/
+│   │   │                   └── MyModel.java
+│   │   ├── resources/
+│   │       ├── application.properties
+│   │       ├── static/
+│   │       ├── templates/
+│   │       └── META-INF/
+│   └── test/
+│       └── java/
+│           └── com/
+│               └── mycompany/
+│                   └── myproject/
+│                       └── MySpringBootApplicationTests.java
+│
+├── .gitignore
+├── mvnw
+├── mvnw.cmd
+├── pom.xml
+└── README.md
+
+#### Descripción de la Estructura
+
+_src/main/java_: Contiene el código fuente principal del proyecto.
+
+_com/mycompany/myproject_: Paquete base del proyecto.
+
+_MySpringBootApplication.java_: La clase principal que inicia la aplicación Spring Boot.
+
+_controller_: Paquete que contiene las clases de controladores, encargados de manejar las solicitudes HTTP.
+
+_service_: Paquete para las clases de servicio, donde se implementa la lógica de negocio.
+
+_repository_: Paquete para las interfaces de repositorio, encargadas de la interacción con la base de datos.
+
+_model_: Paquete para las clases de modelo de datos.
+
+_src/main/resources_: Contiene los recursos de la aplicación.
+
+_application.properties_: Archivo de configuración para la aplicación.
+
+_static_: Directorio para archivos estáticos (CSS, JavaScript, imágenes).
+
+_templates_: Directorio para plantillas de vista (por ejemplo, archivos Thymeleaf).
+
+_META-INF_: Contiene el archivo MANIFEST.MF y otros recursos de configuración.
+
+_src/test/java_: Contiene las pruebas unitarias del proyecto.
+
+_MySpringBootApplicationTests.java_: Clase para las pruebas de la aplicación.
+
+_pom.xml_: Archivo de configuración de Maven, donde se declaran las dependencias y plugins del proyecto.
+
+_README.md_: Archivo de documentación del proyecto.
+
+Esta estructura proporciona una organización clara y modular, que facilita el mantenimiento y la escalabilidad del proyecto.
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../basedatos/" class="btn btn-neutral float-left" title="Base de datos"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../backendp2/" class="btn btn-neutral float-right" title="Backend API - Parte2">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../basedatos/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../backendp2/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
