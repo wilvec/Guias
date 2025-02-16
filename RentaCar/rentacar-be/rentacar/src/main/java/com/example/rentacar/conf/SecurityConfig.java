@@ -17,23 +17,32 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    @Autowired
-    private JwtAuthFilter jwtAuthFilter;
+        @Autowired
+        private JwtAuthFilter jwtAuthFilter;
 
-    private static final String[] AUTH_WHITELIST = {
-            "/api/auth/login",
-            "/api/auth/registro"
-    };
+        private static final String[] AUTH_WHITELIST = {
+                        "/api/auth/login",
+                        "/api/auth/registro",
+                        "/swagger-ui/**",
+                        "/v3/api-docs/**",
+                        "/v3/api-docs",
+                        "/swagger-ui.html"
+        };
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(AbstractHttpConfigurer::disable)
-                .authorizeRequests(authorizeRequests -> authorizeRequests.requestMatchers(AUTH_WHITELIST).permitAll()
-                        .anyRequest().authenticated())
-                .sessionManagement(
-                        sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-        return http.build();
-    }
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+                http
+                                .csrf(AbstractHttpConfigurer::disable)
+                                .authorizeRequests(authorizeRequests -> authorizeRequests
+                                                .requestMatchers(AUTH_WHITELIST).permitAll()
+
+                                                .anyRequest().authenticated())
+
+                                .sessionManagement(
+                                                sessionManagement -> sessionManagement
+                                                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
+                return http.build();
+        }
 }
