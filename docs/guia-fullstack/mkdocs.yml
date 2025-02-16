@@ -8,6 +8,7 @@ nav:
   - Backend API - Parte3: backendp3.md
   - Backend API - Parte4: backendp4.md
   - Backend API - Parte5: backendp5.md
+  - Backend API - Parte6: backendp6.md
 theme:
   name: readthedocs
 site_dir: docs_site
