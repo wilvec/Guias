@@ -3,6 +3,8 @@ nav:
   - Inicio: index.md
   - Introducción: intro.md
   - Base de datos: basedatos.md
+  - FrontEnd App: frontend1.md
+  - FrontEnd App - Parte1: frontend2.md
   - Backend API - Parte1: backendp1.md
   - Backend API - Parte2: backendp2.md
   - Backend API - Parte3: backendp3.md
