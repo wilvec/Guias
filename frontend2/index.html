@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>FrontEnd App - Parte1 - Crear una aplicación FullStack con MySQL, SpringBoot y ReactJS</title>
+    <title>FrontEnd App - Parte2 - Crear una aplicación FullStack con MySQL, SpringBoot y ReactJS</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "FrontEnd App - Parte1";
+        var mkdocs_page_name = "FrontEnd App - Parte2";
         var mkdocs_page_input_path = "frontend2.md";
         var mkdocs_page_url = null;
       </script>
@@ -52,11 +52,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../frontend1/">FrontEnd App</a>
+                <li class="toctree-l1"><a class="reference internal" href="../frontend1/">FrontEnd App - Parte1</a>
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">FrontEnd App - Parte1</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">FrontEnd App - Parte2</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#que-vamos-a-construir">¿Qué vamos a construir?</a>
     </li>
@@ -68,7 +68,17 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instalar-tailwind-css-para-el-proyecto-react">Instalar TailWind CSS para el proyecto React</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#instalacion-y-configuracion-de-tailwind-css">Instalación y configuración de Tailwind CSS</a>
+    </li>
+        </ul>
+    </li>
     </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../frontend3/">FrontEnd App - Parte3</a>
                 </li>
               </ul>
               <ul>
@@ -109,7 +119,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">FrontEnd App - Parte1</li>
+      <li class="breadcrumb-item active">FrontEnd App - Parte2</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -133,21 +143,52 @@
 cd renta-autos
 npm install
 </code></pre>
-<p><img alt="imagen" src="../imagenes/imagen0032.png" title="Imagen: ejecución comandos frontendd" /></p>
-<p><img alt="imagen" src="../imagenes/imagen0033.png" title="Imagen: ejecución comandos frontendd" /></p>
+<p><img alt="imagen" src="../imagenes/imagen0032.png" title="Imagen: ejecución comandos frontend" /></p>
+<p><img alt="imagen" src="../imagenes/imagen0033.png" title="Imagen: ejecución comandos frontend" /></p>
 <h3 id="ejecuta-el-proyecto-local">Ejecuta el proyecto local</h3>
 <pre><code class="language-bash">npm run dev
 </code></pre>
-<p><img alt="imagen" src="../imagenes/imagen0034.png" title="Imagen: ejecución comandos frontendd" /></p>
+<p><img alt="imagen" src="../imagenes/imagen0034.png" title="Imagen: ejecución comandos frontend" /></p>
 <p>Abre el navegador y ve a [http://localhost:5173].</p>
 <p>Debe verse algo como esto (Varía según la versión de React.)</p>
-<p><img alt="imagen" src="../imagenes/imagen0035.png" title="Imagen: ejecución comandos frontendd" /></p>
+<p><img alt="imagen" src="../imagenes/imagen0035.png" title="Imagen: ejecución comandos frontend" /></p>
+<h2 id="instalar-tailwind-css-para-el-proyecto-react">Instalar TailWind CSS para el proyecto React</h2>
+<p>Tailwind CSS es un framework de CSS de código abierto.​ para el diseño de páginas web. La principal característica de esta biblioteca es que, a diferencia de otras como Bootstrap, no genera una serie de clases predefinidas para elementos como botones o tablas. En su lugar, crea una lista de clases CSS "de utilidad" que se pueden usar para dar estilos individuales a cada elemento.</p>
+<p>Por ejemplo, mientras que en otros sistemas tradicionales existiría una clase warning-message que aplicaría un color de fondo amarillo y un texto en negrita, para conseguir este resultado en Tailwind hay que aplicar un conjunto de clases creadas por la biblioteca: bg-yellow-200 y font-bold (que traducido al español significa fondo-amarillo-200 y fuente-negrita).</p>
+<h3 id="instalacion-y-configuracion-de-tailwind-css">Instalación y configuración de Tailwind CSS</h3>
+<p>la instalación de Tailwind, la podemos iniciar desde la página oficial, usando la configuración de React, que es con la que hicimos nuestro proyecto: [https://tailwindcss.com/docs/installation/framework-guides/react-router]</p>
+<p>Primero, se instala tailwindcss and @tailwindcss/vite por medio de  npm:</p>
+<pre><code class="language-bash">npm install tailwindcss @tailwindcss/vite
+</code></pre>
+<p>Agregar el plugin @tailwindcss/vite a la configuración de Vite (archivo vite.config.js):</p>
+<pre><code class="language-javascript">import { defineConfig } from 'vite'
+import tailwindcss from '@tailwindcss/vite'
+export default defineConfig({
+  plugins: [
+    tailwindcss(),
+  ],
+})
+</code></pre>
+<p>Agregar la siguiente línea al archivo global de CSS del proyecto (src/App.css):</p>
+<pre><code class="language-css">@import &quot;tailwindcss&quot;;
+
+</code></pre>
+<p>Probamos la instalación y configuración, abrimos un componente de React y agreguemos la siguiente línea:</p>
+<pre><code class="language-javascript"> &lt;h1 className=&quot;text-3xl font-bold underline&quot;&gt;
+      Hello world!
+ &lt;/h1&gt;
+</code></pre>
+<p>Ejecutamos la aplicación:</p>
+<pre><code class="language-bash">npm run dev
+</code></pre>
+<p>Y Listo:</p>
+<p><img alt="imagen" src="../imagenes/imagen0036.png" title="Imagen: ejecución comandos frontend" /></p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../frontend1/" class="btn btn-neutral float-left" title="FrontEnd App"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../backendp1/" class="btn btn-neutral float-right" title="Backend API - Parte1">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../frontend1/" class="btn btn-neutral float-left" title="FrontEnd App - Parte1"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../frontend3/" class="btn btn-neutral float-right" title="FrontEnd App - Parte3">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -173,7 +214,7 @@ npm install
       <span><a href="../frontend1/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../backendp1/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../frontend3/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
